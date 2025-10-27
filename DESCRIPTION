@@ -1,0 +1,12 @@
+Package: geometricMVE
+Title: Parametric and semiparametric statistical estimation of multivariate extremes via a geometrical approach
+Version: 1.0.0
+Authors@R: c(person("Jennifer", "Wadsworth", email="j.wadsworth@lancaster.ac.uk", role = c("aut", "cre")),
+    person("Ryan", "Campbell",  email="Ryan.CAMPBELL@univ-cotedazur.fr", role = c("aut")),
+    person("Jeongjin", "Lee",  email="j.lee58@lancaster.ac.uk", role = c("ctb")))
+Description: Model fitting and diagnostic tools for the geometric approach to multivariate extremes.
+              Includes parametric forms for gauge functions (Wadsworth and Campbell, 2024) and semi-parametric piecewise linear forms (Campbell and Wadsworth, 2025). 
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
