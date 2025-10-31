@@ -2,6 +2,7 @@
 
 S3method(tail,dep.plots)
 export(Rexc.prob.k)
+export(eval.thresh)
 export(fit.geometric.par)
 export(fit.geometric.pwl)
 export(fit.thresh)

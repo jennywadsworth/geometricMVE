@@ -11,7 +11,7 @@
 #' 
 #' 
 #'
-#' @examples
+#' @noRd
 #' find_solutions(gamma = 0.9, theta = 0.5)
 find_solutions <- function(gamma, theta, tol = 1e-9){
   

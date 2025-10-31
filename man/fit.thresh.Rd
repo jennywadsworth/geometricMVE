@@ -4,7 +4,16 @@
 \alias{fit.thresh}
 \title{Find a high threshold of R|W which is (approximately) the tau-quantile of this variable}
 \usage{
-fit.thresh(r, w, tau = 0.95, method = c("empirical", "KDE"))
+fit.thresh(
+  r,
+  w,
+  tau = 0.95,
+  method = c("empirical", "KDE"),
+  bww = 0.05,
+  bin.mesh = NULL,
+  overlap = NULL,
+  up = 30
+)
 }
 \arguments{
 \item{r}{Values of radial variable}
@@ -13,7 +22,15 @@ fit.thresh(r, w, tau = 0.95, method = c("empirical", "KDE"))
 
 \item{tau}{level at which to calculate threshold}
 
-\item{method}{character string specifying either "empirical" for using a binning mathod, or "KDE" for the method based on kernel density estimation as outlines in Campbell and Wadsworth (2025)}
+\item{method}{character string specifying either "empirical" for using a binning method, or "KDE" for the method based on kernel density estimation as outlines in Campbell and Wadsworth (2025)}
+
+\item{bww}{bandwidth for W kernel when method="KDE"}
+
+\item{bin.mesh}{numerical value affecting number of bins for estimation when method="empirical"}
+
+\item{overlap}{numerical value affecting overlap of bins for estimation when method="empirical"}
+
+\item{up}{numerical value giving upper limit for root finding of r0w when method="KDE" (default 30)}
 }
 \value{
 list containing elements r0w (estimated threshold for each given w), r, w, tau and method

@@ -134,7 +134,10 @@ plotfittedthresh=function(thresh.fit, add=FALSE){
     wpts = seq(0,1,len=resolution)
     wpts = cbind(wpts,1-wpts)
     thresh.r = eval.thresh(thresh.fit,wpts)
-    if(add==FALSE){plot(thresh.fit$r * cbind(thresh.fit$w,1-thresh.fit$w),xlab="x",ylab="y")}
+    if(add==FALSE){
+      plot(thresh.fit$r * cbind(thresh.fit$w,1-thresh.fit$w),
+                        xlab="x",ylab="y",pch=20,col="grey")
+    }
     lines(thresh.r * wpts,col="red",lwd=2)
   } else if(d==3){
     require(rgl)

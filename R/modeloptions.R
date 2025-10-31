@@ -10,7 +10,7 @@
 #' @param theta13 used if moel = "alogistic" to specify whether there are joint extremes for this group
 #' @param theta23 used if moel = "alogistic" to specify whether there are joint extremes for this group
 #' @param theta123 used if moel = "alogistic" to specify whether there are joint extremes for this group
-#'
+#' @noRd
 modeloptions<-function(model,customgauge,init.val,lower.limit,
                        upper.limit,d,theta12,theta13,theta23,theta123)
 {
