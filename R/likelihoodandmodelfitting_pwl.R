@@ -367,7 +367,7 @@ fit.pwlin.2d = function(r,w,r0w,locs,
 
       mle[-fixed.pars.idx] = opt2$mle
       shape.val = opt2$shape
-
+      
       locs.cart = cbind(locs,1-locs)
       keep.fitting = any(round(as.numeric(apply(cbind(locs,1-locs)/sapply(locs,gfun,par=mle),2,max)),6)!=1)
     
@@ -394,7 +394,7 @@ fit.pwlin.2d = function(r,w,r0w,locs,
 
     return(list(mle =mle,
                 mle.W = mle.W,
-                shape=opt$shape,
+                shape=opt2$shape,  # made this opt2 instead of opt
                 nll = opt2$nllh,
                 convergence = opt2$conv,
                 hessian=opt2$hessian))
@@ -682,8 +682,6 @@ fit.pwlin = function(r,w,r0w,locs,
                  fixshape=fixshape,W.fit=W.fit,joint.fit=joint.fit,
                  pen.const=pen.const,method=method,hessian=hessian)
 
-  # print(opt)
-
   if(bound.fit){
 
     shape.val = opt$shape
@@ -784,7 +782,6 @@ fit.pwlin = function(r,w,r0w,locs,
     } else {
       mle.W = NULL
     }
-
     return(list(mle = mle, mle.W = mle.W, shape=shape.val,
                 nll = opt2$nllh, convergence = opt2$conv,
                 hessian=opt2$hessian))
