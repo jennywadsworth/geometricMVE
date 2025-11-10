@@ -121,7 +121,7 @@ emp.thresh = function(r, w, tau = 0.95, bin.mesh, overlap){
   stop("General d-dimension empirical threshold estimation not yet implemented. Check back later.")
   
   if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
 
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -180,7 +180,7 @@ emp.thresh.2d = function(r, w, tau = 0.95, bin.mesh, overlap){
   }
   
   if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -220,8 +220,8 @@ emp.thresh.eval.2d = function(wpts,quant.grid,bin.mesh,overlap){
     stop("wpts needs to be a n x 2 matrix")
   }
   
-  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(wpts)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -254,7 +254,7 @@ emp.thresh.eval.2d = function(wpts,quant.grid,bin.mesh,overlap){
 emp.thresh.3d = function(r, w, tau = 0.95, bin.mesh, overlap){
   
   if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)} 
+  if(is.null(overlap)){overlap = 0.1} 
 
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -309,8 +309,8 @@ emp.thresh.3d = function(r, w, tau = 0.95, bin.mesh, overlap){
 #' @noRd
 emp.thresh.eval.3d = function(wpts,quant.grid,bin.mesh,overlap){
   
-  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(wpts)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -348,7 +348,7 @@ emp.thresh.eval.3d = function(wpts,quant.grid,bin.mesh,overlap){
 emp.thresh.4d = function(r, w, tau = 0.95, bin.mesh, overlap){
   
   if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)} 
+  if(is.null(overlap)){overlap = 0.1} 
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -408,8 +408,8 @@ emp.thresh.4d = function(r, w, tau = 0.95, bin.mesh, overlap){
 #' @noRd
 emp.thresh.eval.4d = function(wpts,quant.grid, bin.mesh,overlap){
   
-  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(wpts)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -451,7 +451,7 @@ emp.thresh.eval.4d = function(wpts,quant.grid, bin.mesh,overlap){
 emp.thresh.5d = function(r, w, tau = 0.95,bin.mesh,overlap){
   
   if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)} 
+  if(is.null(overlap)){overlap = 0.1} 
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
@@ -520,8 +520,8 @@ emp.thresh.5d = function(r, w, tau = 0.95,bin.mesh,overlap){
 #' @noRd
 emp.thresh.eval.5d = function(wpts,quant.grid,bin.mesh,overlap){
   
-  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(wpts)[2]))}
-  if(is.null(overlap)){overlap = 2/(bin.mesh)}  # <-- this needs to be played with
+  if(is.null(bin.mesh)){bin.mesh = floor(100/(dim(w)[2]))}
+  if(is.null(overlap)){overlap = 0.1}  # <-- this needs to be played with
   
   wsl <- seq(0, 1 - overlap, len = bin.mesh)
   wsu <- seq(overlap, 1, len = bin.mesh)
