@@ -248,15 +248,15 @@ plotfittedgauge<-function(fit,resolution=70,add=FALSE,col="red",xlab="x",ylab="y
       g.vals = fit$setup$gfun(wpts,par=fit$mle)
       
       if(add){
-        surface3d(wpts[,1] / matrix(g.vals,100,100),
-                  wpts[,2] / matrix(g.vals,100,100),
-                  wpts[,3] / matrix(g.vals,100,100),
+        surface3d(wpts[,1] / matrix(g.vals,resolution,resolution),
+                  wpts[,2] / matrix(g.vals,resolution,resolution),
+                  wpts[,3] / matrix(g.vals,resolution,resolution),
                   col=col,alpha=alphaval,add=add)
       } else{
       plot3d(NA,xlab="x1",ylab="x2",zlab="x3")
-      surface3d(wpts[,1] / matrix(g.vals,100,100),
-                wpts[,2] / matrix(g.vals,100,100),
-                wpts[,3] / matrix(g.vals,100,100),
+      surface3d(wpts[,1] / matrix(g.vals,resolution,resolution),
+                wpts[,2] / matrix(g.vals,resolution,resolution),
+                wpts[,3] / matrix(g.vals,resolution,resolution),
                 col=col,alpha=alphaval)}
       } else if(fit$class=="parametric")
       {
