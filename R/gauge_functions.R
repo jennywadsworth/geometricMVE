@@ -1,9 +1,27 @@
+#' Logistic gauge function
+#' @param vec values at which to evaluate the gauge function
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_logistic<-function(vec,par)
 {
   sum(vec)/par+min(vec)*(1-length(vec)/par)
 }
+
+#' Asymmetric logistic gauge function
+#' @param vec values at which to evaluate the gauge function (of length 2 or 3)
+#' @param par parameter value
+#' @param theta1 set equal to 0 if do not want extremes of this group of variables
+#' @param theta2 set equal to 0 if do not want extremes of this group of variables
+#' @param theta3 set equal to 0 if do not want extremes of this group of variables
+#' @param theta12 set equal to 0 if do not want extremes of this group of variables
+#' @param theta23 set equal to 0 if do not want extremes of this group of variables
+#' @param theta13 set equal to 0 if do not want extremes of this group of variables
+#' @param theta123 set equal to 0 if do not want extremes of this group of variables
+
+#' @noRd
 
 #' @export
 
@@ -114,12 +132,22 @@ gauge_invlogistic <- function(vec, par)
   return(sum(vec^(1/par))^(par))
 }
 
+#' Inverted Clayton gauge function
+#' @param vec values at which to evaluate the gauge function
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_invclayton<-function(vec,par)
 {
   return(max(vec)*(1+length(vec)*par)-sum(vec)*par)
 }
+
+#' Gaussian gauge function
+#' @param vec values at which to evaluate the gauge function (d=2,3,4)
+#' @param par parameter value (correlation parameters filling up matrix)
+#' @noRd
 
 #' @export
 
@@ -139,12 +167,22 @@ gauge_gaussian<-function(vec,par)
   return(as.numeric(t(sqrt(vec))%*%solve(S)%*%sqrt(vec)))
 }
 
+#' Square gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_square<-function(vec,par)
 {
   return(max((vec[1]-vec[2])/par,(vec[2]-vec[1])/par,(vec[1]+vec[2])/(2-par)))
 }
+
+#' Exponential-Gaussian additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
 
 #' @export
 
@@ -186,6 +224,11 @@ gauge_expgauss <- function(vec, par){
   return(out)
 }
 
+#' Exponential-Inverted Logistic additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_expinvlog <- function(vec, par){
@@ -222,6 +265,11 @@ gauge_expinvlog <- function(vec, par){
   return(out)
 }
 
+#' Exponential-square additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_expsquare <- function(vec, par){
@@ -238,6 +286,11 @@ gauge_expsquare <- function(vec, par){
   }
   return(out)
 }
+
+#' Logistic-Gaussian additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
 
 #' @export
 
@@ -281,6 +334,11 @@ gauge_addloggauss <- function(vec, par){
   return(ms*mixture.GaussLog)
 }
 
+#' Logistic-inverted logistic additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
+
 #' @export
 
 gauge_addloginvlog <- function(vec, par){
@@ -318,6 +376,11 @@ gauge_addloginvlog <- function(vec, par){
   mixture.InvLogLog=Wgt*((x^(1/Theta)+y^(1/Theta))^Theta) + (1-Wgt)*(max(x, y)/Gam + min(x, y)*(1-1/Gam))
   return(ms*mixture.InvLogLog)
 }
+
+#' Logistic-square additive gauge function
+#' @param vec values at which to evaluate the gauge function (d=2)
+#' @param par parameter value
+#' @noRd
 
 #' @export
 
