@@ -20,6 +20,3 @@ A numeric vector containing the two solutions for x.
 This function solves the equation(1-x^(1/theta))^theta - gamma = -((x^(1/theta-1))\emph{(1-x^(1/theta))^(theta-1))}(x-gamma)
 for x, given the specified constraints on the parameters.
 }
-\examples{
-find_solutions(gamma = 0.9, theta = 0.5)
-}
