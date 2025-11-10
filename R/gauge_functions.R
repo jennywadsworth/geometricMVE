@@ -1,7 +1,11 @@
+#' @export
+
 gauge_logistic<-function(vec,par)
 {
   sum(vec)/par+min(vec)*(1-length(vec)/par)
 }
+
+#' @export
 
 gauge_alogistic<-function(vec, par, theta1 = 1, theta2 = 1, theta3 = 1, theta12 = 1, 
           theta13 = 1, theta23 = 1, theta123 = 1) 
@@ -103,15 +107,21 @@ gauge_alogistic<-function(vec, par, theta1 = 1, theta2 = 1, theta3 = 1, theta12 
   }
 }
 
+#' @export
+
 gauge_invlogistic <- function(vec, par)
 {
   return(sum(vec^(1/par))^(par))
 }
 
+#' @export
+
 gauge_invclayton<-function(vec,par)
 {
   return(max(vec)*(1+length(vec)*par)-sum(vec)*par)
 }
+
+#' @export
 
 gauge_gaussian<-function(vec,par)
 {
@@ -129,11 +139,14 @@ gauge_gaussian<-function(vec,par)
   return(as.numeric(t(sqrt(vec))%*%solve(S)%*%sqrt(vec)))
 }
 
+#' @export
+
 gauge_square<-function(vec,par)
 {
   return(max((vec[1]-vec[2])/par,(vec[2]-vec[1])/par,(vec[1]+vec[2])/(2-par)))
 }
 
+#' @export
 
 gauge_expgauss <- function(vec, par){
   x <- vec[1];y <- vec[2]
@@ -173,6 +186,8 @@ gauge_expgauss <- function(vec, par){
   return(out)
 }
 
+#' @export
+
 gauge_expinvlog <- function(vec, par){
   x <- vec[1];y <- vec[2]
   Gam=par[1];Theta=par[2]
@@ -207,6 +222,8 @@ gauge_expinvlog <- function(vec, par){
   return(out)
 }
 
+#' @export
+
 gauge_expsquare <- function(vec, par){
   x <- vec[1];  y <- vec[2]
   
@@ -221,6 +238,8 @@ gauge_expsquare <- function(vec, par){
   }
   return(out)
 }
+
+#' @export
 
 gauge_addloggauss <- function(vec, par){
   x <- vec[1]; y <- vec[2]
@@ -262,6 +281,8 @@ gauge_addloggauss <- function(vec, par){
   return(ms*mixture.GaussLog)
 }
 
+#' @export
+
 gauge_addloginvlog <- function(vec, par){
   x <- vec[1]; y <- vec[2]
   
@@ -297,6 +318,8 @@ gauge_addloginvlog <- function(vec, par){
   mixture.InvLogLog=Wgt*((x^(1/Theta)+y^(1/Theta))^Theta) + (1-Wgt)*(max(x, y)/Gam + min(x, y)*(1-1/Gam))
   return(ms*mixture.InvLogLog)
 }
+
+#' @export
 
 gauge_addlogsquare <- function(vec, par){
   x <- vec[1]; y <- vec[2]
