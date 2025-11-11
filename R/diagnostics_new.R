@@ -124,8 +124,7 @@ qqdiag<-function(fit,quantilefn=qexp)
 #'
 #' @export
 #' 
-plotfittedthresh=function(thresh.fit, add=FALSE){
-  resolution=100
+plotfittedthresh=function(thresh.fit, resolution=100, add=FALSE){
   d = dim(thresh.fit$w)[2]
   if(is.null(d)){
     d=2
@@ -152,9 +151,9 @@ plotfittedthresh=function(thresh.fit, add=FALSE){
     plot3d(thresh.fit$r * thresh.fit$w,
            xlab="x1",ylab="x2",zlab="x3")
       }
-    surface3d(wpts[,1] * matrix(thresh.r,100,100),
-              wpts[,2] * matrix(thresh.r,100,100),
-              wpts[,3] * matrix(thresh.r,100,100),
+    surface3d(wpts[,1] * matrix(thresh.r,resolution,resolution),
+              wpts[,2] * matrix(thresh.r,resolution,resolution),
+              wpts[,3] * matrix(thresh.r,resolution,resolution),
               col="red",alpha=0.4,add=add)
   } else {
     stop("Only supported for d=2,3")

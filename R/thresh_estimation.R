@@ -82,10 +82,10 @@ eval.thresh = function(fit.thresh.out,w.eval,up=30){
   if(dim(w.eval)[2]==2 & fit.thresh.out$method=="KDE"){
     w.eval = w.eval[,1]
     r0w = KDE.thresh.eval.2d(wpts=w.eval,
-                             r=fit.thresh.out$r,w=fit.thresh.out$w,bww=fit.thresh.out$bww,up=up)
+                             r=fit.thresh.out$r,w=fit.thresh.out$w,bww=fit.thresh.out$bww,up=up,tau=fit.thresh.out$tau)
   } else if(dim(w.eval)[2]>2 & fit.thresh.out$method=="KDE") {
     r0w = KDE.thresh.eval(wpts=w.eval,
-                          r=fit.thresh.out$r,w=fit.thresh.out$w,bww=fit.thresh.out$bww,up=up)
+                          r=fit.thresh.out$r,w=fit.thresh.out$w,bww=fit.thresh.out$bww,up=up,tau=fit.thresh.out$tau)
   } else if(dim(w.eval)[2]==2 & fit.thresh.out$method=="empirical"){
     r0w = emp.thresh.eval.2d(wpts=w.eval,quant.grid=fit.thresh.out$quant.grid,bin.mesh=fit.thresh.out$bin.mesh,overlap=fit.thresh.out$overlap)
   } else if(dim(w.eval)[2]==3 & fit.thresh.out$method=="empirical"){
