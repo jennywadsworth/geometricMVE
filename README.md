@@ -7,6 +7,7 @@ Campbell, R. and Wadsworth, J. L. (2024) Piecewise-linear modeling of multivaria
 
 ## Example code
 ### Installation
+```r
 library(remotes)
 remotes::install_github("jennywadsworth/geometricMVE")
-
+```
