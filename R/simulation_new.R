@@ -134,7 +134,7 @@ iweights<-function(k, r0w, w, gfun, par, add.gauge=FALSE,gauge1,gauge2,
   else{
     rate<-apply(w,1,gfun,par=par)
   }
-  return(pgamma(k*r0w,shape=shape,rate=rate,lower.tail = F)/pgamma(r0w,shape=par[1],rate=rate,lower.tail = F))
+  return(pgamma(k*r0w,shape=shape,rate=rate,lower.tail = F)/pgamma(r0w,shape=shape,rate=rate,lower.tail = F))
 }
 
 #==============================================================================
