@@ -3,7 +3,7 @@
 #' @param r Values of radial variable
 #' @param w values of angular variable (on unit simplex)
 #' @param tau level at which to calculate threshold
-#' @param method character string specifying either "empirical" for using a binning method, or "KDE" for the method based on kernel density estimation as outlines in Campbell and Wadsworth (2025)
+#' @param method character string specifying either "empirical" for using a binning method, or "KDE" for the method based on kernel density estimation as outlined in Campbell and Wadsworth (2025). Defaults to "KDE".
 #' @param bww bandwidth for W kernel when method="KDE"
 #' @param bin.mesh numerical value affecting number of bins for estimation when method="empirical"
 #' @param overlap numerical value affecting overlap of bins for estimation when method="empirical"
@@ -12,7 +12,7 @@
 #' @return list containing elements r0w (estimated threshold for each given w), r, w, tau and method
 #' @export
 
-fit.thresh = function(r,w,tau=0.95,method=c("empirical","KDE"),bww=0.05,bin.mesh=NULL,overlap=NULL,up=30){
+fit.thresh = function(r,w,tau=0.95,method="KDE",bww=0.05,bin.mesh=NULL,overlap=NULL,up=30){
   if(any(w<0)){stop("values of w must be in the unit simplex")}
   if(is.vector(w)){
     w<-cbind(w,1-w)
@@ -23,21 +23,21 @@ fit.thresh = function(r,w,tau=0.95,method=c("empirical","KDE"),bww=0.05,bin.mesh
     }
   }
   
-  if(dim(w)[2]==2 & method=="KDE"){
+  if(dim(w)[2]==2 && method=="KDE"){
     w = w[,1]
     r0w = radial.thresh.KDE.2d(r=r,w=w,tau=tau,bww=bww,up=up)
-  } else if(dim(w)[2]>2 & method=="KDE") {
+  } else if(dim(w)[2]>2 && method=="KDE") {
     r0w = radial.thresh.KDE(r=r,w=w,tau=tau,bww=bww,up=up)
-  } else if(dim(w)[2]==2 & method=="empirical"){
+  } else if(dim(w)[2]==2 && method=="empirical"){
     # r0w = emp.thresh(r=r,w=w,tau=tau)
     emp.thresh.output = emp.thresh.2d(r=r,w=w,tau=tau,bin.mesh=bin.mesh,overlap=overlap)
-  } else if(dim(w)[2]==3 & method=="empirical"){
+  } else if(dim(w)[2]==3 && method=="empirical"){
     emp.thresh.output = emp.thresh.3d(r=r,w=w,tau=tau,bin.mesh=bin.mesh,overlap=overlap)
-  } else if(dim(w)[2]==4 & method=="empirical"){
+  } else if(dim(w)[2]==4 && method=="empirical"){
     emp.thresh.output = emp.thresh.4d(r=r,w=w,tau=tau,bin.mesh=bin.mesh,overlap=overlap)
-  } else if(dim(w)[2]==5 & method=="empirical"){
+  } else if(dim(w)[2]==5 && method=="empirical"){
     emp.thresh.output = emp.thresh.5d(r=r,w=w,tau=tau,bin.mesh=bin.mesh,overlap=overlap)
-  } else if(dim(w)[2]>5 & method=="empirical"){
+  } else if(dim(w)[2]>5 && method=="empirical"){
     stop("Empirical threshold estimation is not yet implemented for d>5. Use the KDE method instead.")
   }
   if(method=="KDE"){
