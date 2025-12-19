@@ -56,6 +56,30 @@ plotfittedgauge(fit1)
 
 # Diagnostics
 ppdiag(fit1)
-qqfiag(fit1)
+qqdiag(fit1)
 
+# Fit using piecewise-linear gauge function
+
+fitpwl1<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w) 
+plotfittedgauge(fitpwl1)
+
+# Fix shape
+
+fitpwl2<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,fixshape = T) 
+plotfittedgauge(fitpwl2)
+
+# Bound fit
+
+fitpwl3<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,bound.fit = T) 
+plotfittedgauge(fitpwl3)
+
+# Change reference locations
+
+fitpwl4<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w, locs=seq(0,1,len=5)) 
+plotfittedgauge(fitpwl4)
+
+
+# Diagnostics
+ppdiag(fitpwl1)
+qqdiag(fitpwl1)
 ```
