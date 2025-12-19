@@ -119,6 +119,7 @@ qqdiag<-function(fit,quantilefn=qexp)
 #' Plot fitted threshold for d=2,3
 
 #' @param thresh.fit output from fit.thresh
+#' @param resolution number giving plotting resolution of fitted threshold. Higher numbers plot at more points, but take longer (particularly for d=3)
 #' @param add logical - add to existing plot?
 #' @return plot of fitted threshold over data sample
 #'
