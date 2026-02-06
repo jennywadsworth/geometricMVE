@@ -4,6 +4,7 @@
 ## References
 - Wadsworth, J. L. and Campbell, R. (2024) Statistical inference for multivariate extremes via a geometric approach JRSSB, 86 (5), 1243-1265
 - Campbell, R. and Wadsworth, J. L. (2024) Piecewise-linear modeling of multivariate geometric extremes. https://arxiv.org/abs/2412.05195
+- Lee, J. and Wadsworth, J. (2025) Geometric criteria for identifying extremal dependence and flexible modeling via additive mixtures. https://arxiv.org/abs/2512.24392
 
 ## Example code
 ### Installation
@@ -51,8 +52,14 @@ fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="log") # logistic-type gauge
 fit2<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="gauss") # gaussian-type gauge
 fit3<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="invlog") # Inverted logistic-type gauge
 
+# Fit using additive mixtures (agnostic to extremal dependence class)
+fit4<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="expgauss") # Exponential-Gaussian mix
+fit5<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="expinvlog") # Exponential-Inverted logistic mix
+
 # Plot fitted gauge functions / limit sets
 plotfittedgauge(fit1)
+plotfittedgauge(fit4)
+
 
 # Diagnostics
 ppdiag(fit1)
