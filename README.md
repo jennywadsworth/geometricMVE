@@ -21,7 +21,7 @@ x<-qexp(exp(-exp(-x)))
 
 # Radial-angular variables
 
-r<-x[,1]+x[,2]
+r<-apply(x,1,sum)
 w<-x/r
 
 # Establishing a high threshold for R|W
@@ -82,4 +82,80 @@ plotfittedgauge(fitpwl4)
 # Diagnostics
 ppdiag(fitpwl1)
 qqdiag(fitpwl1)
+```
+### 3d Example
+
+```
+library(mvtnorm)
+library(rgl) # for plots
+
+set.seed(1)
+n<-2500
+sig<-matrix(c(1,0.8,0.5,0.8,1,0.6,0.5,0.6,1),nrow=3,byrow=T)
+x<-qexp(pnorm(rmvnorm(n,sigma=sig)))
+
+# Radial-angular variables
+
+r<-apply(x,1,sum)
+w<-x/r
+
+# Establishing a high threshold for R|W
+
+# Empirical:
+qr<-fit.thresh(r=r,w=w, method = "empirical")
+
+# KDE:
+qr<-fit.thresh(r=r,w=w, method = "KDE")
+
+# Visualization
+plotfittedthresh(qr)
+
+# Fitting truncated gamma model, using R exceedances defined through rolling-windows quantiles
+
+excind<-r>qr$r0w
+rexc<-r[excind]
+wexc<-w[excind,]
+
+# Threshold value corresponding to each w:
+
+r0w<-qr$r0w[excind]
+
+# Fit using different basic parametric gauge functions
+
+fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="log") # logistic-type gauge
+fit2<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="gauss") # gaussian-type gauge
+fit3<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="invlog") # Inverted logistic-type gauge
+
+# Plot fitted gauge functions / limit sets
+plotfittedgauge(fit2)
+
+# Add scaled points
+points3d(x/log(n))
+
+# Diagnostics
+ppdiag(fit2)
+qqdiag(fit2)
+
+# Fit using piecewise-linear gauge function
+
+# Define reference angles
+
+par.locs = seq(0,1,by=1/6)
+par.locs = as.matrix(expand.grid(par.locs,par.locs))
+par.locs = cbind(par.locs,1-apply(par.locs,1,sum))
+par.locs = par.locs[apply(par.locs,1,function(w) !any(w<0)),]
+par.locs[,3] = ifelse(par.locs[,3]<0.001,0,par.locs[,3])
+
+
+fitpwl1<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,locs=par.locs) 
+
+# Plot fitted gauge function
+plotfittedgauge(fitpwl1)
+
+# Add scaled points
+points3d(x/log(n))
+
+# Diagnostics
+ppdiag(fitpwl1)
+qqdiag(fitpwl2)
 ```
