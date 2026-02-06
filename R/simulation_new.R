@@ -153,7 +153,7 @@ Rexc.prob.k<-function(k, fit, nwg=70)
   if(!fit$fixshape){par1ind<-fit$setup$par1ind-1;par2ind<-fit$setup$par2ind-1
   } else{par1ind<-fit$setup$par1ind;par2ind<-fit$setup$par2ind}
   iw<-iweights(k=k, r0w=fit$data$r0w, w=fit$data$w, gfun=fit$setup$gfun,
-               par=fit$mle, add.gauge=fit$setup$add.gauge,
+               par=fit$mle, shape=fit$shape, add.gauge=fit$setup$add.gauge,
                gauge1=fit$setup$gauge1,gauge2=fit$setup$gauge2,
                par1ind=par1ind,par2ind=par2ind,nwg=nwg)
   return(mean(iw))
