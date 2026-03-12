@@ -4,7 +4,7 @@
 ## References
 - Wadsworth, J. L. and Campbell, R. (2024) Statistical inference for multivariate extremes via a geometric approach JRSSB, 86 (5), 1243-1265
 - Campbell, R. and Wadsworth, J. L. (2024) Piecewise-linear modeling of multivariate geometric extremes. https://arxiv.org/abs/2412.05195
-- Lee, J. and Wadsworth, J. (2025) Geometric criteria for identifying extremal dependence and flexible modeling via additive mixtures. https://arxiv.org/abs/2512.24392
+- Lee, J. and Wadsworth, J. L. (2025) Geometric criteria for identifying extremal dependence and flexible modeling via additive mixtures. https://arxiv.org/abs/2512.24392
 
 ## Example code
 ### Installation
@@ -89,6 +89,30 @@ plotfittedgauge(fitpwl4)
 # Diagnostics
 ppdiag(fitpwl1)
 qqdiag(fitpwl1)
+
+
+# Simulation of new pseudo-observations using the model structure
+newx<-sim.geometric(fit = fit1, nsim=10000)
+plot(x,xlim=c(0,12),ylim=c(0,12))
+points(newx,col=2,pch=20)
+
+# Simulate above a higher threshold
+newx2<-sim.geometric(fit = fit1, k=2, nsim=10000)
+plot(x,xlim=c(0,15),ylim=c(0,15))
+points(newx2,col=3,pch=20)
+
+
+# Estimate probability 8<X<12, 4<Y<6
+
+cond.prob<-mean(newx[,1]>8 & newx[,1]<12 & newx[,2]>4 & newx[,2]<6)
+prob<-cond.prob*mean(excind)
+prob
+
+cond.prob1<-mean(newx2[,1]>8 & newx2[,1]<12 & newx2[,2]>4 & newx2[,2]<6)
+cond.prob2<-Rexc.prob.k(k=2, fit=fit1) # Undoes extra conditioning of being above a higher threshold
+prob<-cond.prob1*cond.prob2*mean(excind)
+prob
+
 ```
 ### 3d Example
 
@@ -165,4 +189,10 @@ points3d(x/log(n))
 # Diagnostics
 ppdiag(fitpwl1)
 qqdiag(fitpwl2)
+
+
+# Simulation of new pseudo-observations using the model structure
+newx<-sim.geometric(fit = fit2, nsim=10000)
+plot3d(x,xlim=c(0,12),ylim=c(0,12),zlim=c(0,12))
+points3d(newx,col=2,pch=20)
 ```
