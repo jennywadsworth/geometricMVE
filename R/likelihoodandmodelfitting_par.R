@@ -5,7 +5,7 @@
 #' @param w Values of W that correspond to the threshold exceedances of R
 #' @param r0w The threshold function r_0(w) for each value of W supplied
 #' @param thresh.fit The output from fit.thresh. If this is included, then exceedances of r,w, and the corresponding threshold r0w, are automatically calculated, and they overwrite any supplied r, w, r0w
-#' @param model Character string specifying model to use for the gauge function. Options are "log" for logistic-type gauge, "invlog" for inverted logistic, "gauss" for Gaussian, "square" for square. If two options are given, then the fitted gauge will be an additive mixture of these two.
+#' @param model Character string specifying model to use for the gauge function. Options are "log" for logistic-type gauge, "invlog" for inverted logistic, "gauss" for Gaussian, "square" for square, "invclayton" for inverted Clayton, "expgauss", "expinvlog","expsquare" for Gaussian, inverted logistic or square mixed with an expenential variable (see Lee and Wadsworth (2025)), and "alogistic" for asymmetric logistic. If two options are given, then the fitted gauge will be an additive mixture of these two.
 #' @param customgauge Optional argument to specify a custom gauge function. This should have
 #' @param fixshape Logical. If TRUE, then the shape parameter of the truncated gamma distribution is fixed to the dimension d, otherwise this is estimated.
 #' @param init.val vector of initial gauge function parameter values for optimization (needed when customgauge used, otherwise optional)
