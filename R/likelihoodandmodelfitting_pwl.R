@@ -2,6 +2,8 @@
 
 #' @param r Values of R|W=w that exceed the threshold r0w
 #' @param w Values of W that correspond to the threshold exceedances of R
+#' @param r0w The threshold function r_0(w) for each value of W supplied
+#' @param thresh.fit The output from fit.thresh. If this is included, then exceedances of r,w, and the corresponding threshold r0w, are automatically calculated, and they overwrite any supplied r, w, r0w
 #' @param locs The reference angles (nodes) at which parameters are estimation
 #' @param init.val vector of initial parameter values for optimization (when customgauge used)
 #' @param fixshape Logical. If TRUE, then the shape parameter of the truncated gamma distribution is fixed to the dimension d, otherwise this is estimated.
@@ -14,9 +16,28 @@
 #' @return list containing elements "mle", "nllh", "convergence", and additionally "cov" if argument hessian=T is supplied to optim
 #'
 #' @export
-fit.geometric.pwl = function(r,w,r0w,locs=NULL,
+fit.geometric.pwl = function(r, w, r0w, thresh.fit, locs=NULL,
                              init.val=NULL,fixshape=FALSE,W.fit=FALSE,joint.fit=FALSE,
                              method="BFGS",pen.const=1,bound.fit=FALSE,hessian=FALSE){
+ 
+  if(!is.null(thresh.fit)){
+    r<-thresh.fit$r
+    w<-thresh.fit$w
+    
+    excind<-r>thresh.fit$r0w
+    r<-r[excind]
+    w<-w[excind,]
+    r0w<-thresh.fit$r0w[excind]
+    
+    na.ind<-which(is.na(r))
+    if(length(na.ind)>0){
+      r<-r[-na.ind]
+      w<-w[-na.ind]
+      r0w<-r0w[-na.ind]
+      print(cat(length(na.ind), "NA values removed in exceedance observations indexed", na.ind))
+    }
+  }
+  
   if(any(w<0)){stop("Invalid values of W")}
   if(is.vector(w)){
     w<-cbind(w,1-w)
