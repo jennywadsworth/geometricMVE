@@ -1,5 +1,5 @@
 # geometricMVE
-## R package for fitting parametric and piecewise-linear models for the gauge function of a multivariate sample in exponential margins
+## R package for fitting parametric and piecewise-linear models for limit-set based multivariate extremal inference in exponential margins
 
 ## References
 - Wadsworth, J. L. and Campbell, R. (2024) Statistical inference for multivariate extremes via a geometric approach JRSSB, 86 (5), 1243-1265
