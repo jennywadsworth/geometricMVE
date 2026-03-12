@@ -8,7 +8,7 @@ fit.thresh(
   r,
   w,
   tau = 0.95,
-  method = c("empirical", "KDE"),
+  method = "KDE",
   bww = 0.05,
   bin.mesh = NULL,
   overlap = NULL,
@@ -22,7 +22,7 @@ fit.thresh(
 
 \item{tau}{level at which to calculate threshold}
 
-\item{method}{character string specifying either "empirical" for using a binning method, or "KDE" for the method based on kernel density estimation as outlines in Campbell and Wadsworth (2025)}
+\item{method}{character string specifying either "empirical" for using a binning method, or "KDE" for the method based on kernel density estimation as outlined in Campbell and Wadsworth (2025). Defaults to "KDE".}
 
 \item{bww}{bandwidth for W kernel when method="KDE"}
 

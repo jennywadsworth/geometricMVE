@@ -8,6 +8,7 @@ fit.geometric.pwl(
   r,
   w,
   r0w,
+  thresh.fit,
   locs = NULL,
   init.val = NULL,
   fixshape = FALSE,
@@ -23,6 +24,10 @@ fit.geometric.pwl(
 \item{r}{Values of R|W=w that exceed the threshold r0w}
 
 \item{w}{Values of W that correspond to the threshold exceedances of R}
+
+\item{r0w}{The threshold function r_0(w) for each value of W supplied}
+
+\item{thresh.fit}{The output from fit.thresh. If this is included, then exceedances of r,w, and the corresponding threshold r0w, are automatically calculated, and they overwrite any supplied r, w, r0w}
 
 \item{locs}{The reference angles (nodes) at which parameters are estimation}
 

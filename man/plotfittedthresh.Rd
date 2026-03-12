@@ -4,10 +4,12 @@
 \alias{plotfittedthresh}
 \title{Plot fitted threshold for d=2,3}
 \usage{
-plotfittedthresh(thresh.fit, add = FALSE)
+plotfittedthresh(thresh.fit, resolution = 100, add = FALSE)
 }
 \arguments{
 \item{thresh.fit}{output from fit.thresh}
+
+\item{resolution}{number giving plotting resolution of fitted threshold. Higher numbers plot at more points, but take longer (particularly for d=3)}
 
 \item{add}{logical - add to existing plot?}
 }

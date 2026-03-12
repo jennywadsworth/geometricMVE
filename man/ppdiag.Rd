@@ -4,10 +4,12 @@
 \alias{ppdiag}
 \title{PP diagnostic for fitted truncated gamma model}
 \usage{
-ppdiag(fit)
+ppdiag(fit, type = "standard")
 }
 \arguments{
 \item{fit}{list output from fit.geometric.par or fit.geometric.pwlin}
+
+\item{type}{either "standard" (default), for which the PP plot is displayed in the standard orientation, or "horizontal", in which the values are subtracted from one another so that they should lie close to the line y=0.}
 }
 \value{
 PP plot with 95\\% tolerance intervals
