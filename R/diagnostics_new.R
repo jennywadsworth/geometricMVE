@@ -3,11 +3,12 @@
 #' PP diagnostic for fitted truncated gamma model
 
 #' @param fit list output from fit.geometric.par or fit.geometric.pwlin
+#' @param type either "standard" (default), for which the PP plot is displayed in the standard orientation, or "horizontal", in which the values are subtracted from one another so that they should lie close to the line y=0.
 #' @return PP plot with 95\% tolerance intervals
 #'
 #' @export
 
-ppdiag<-function(fit)
+ppdiag<-function(fit, type="standard")
 {
     w<-fit$data$w
     r<-fit$data$r
@@ -44,15 +45,23 @@ ppdiag<-function(fit)
                 rate=rate,lower.tail = F)
   }
   nr<-length(r)
+  Ulow<-sapply(1:nr,function(i){qbeta(0.025,i,nr+1-i)})
+  Uup<-sapply(1:nr,function(i){qbeta(0.975,i,nr+1-i)})
+  
+  if(type=="standard")
+  {
   plot(c(1:nr)/(nr+1),
        sort(1-num/den),xlab="empirical",ylab="model",pch=20,cex=0.8)
   abline(a=0,b=1)
-
-  Ulow<-sapply(1:nr,function(i){qbeta(0.025,i,nr+1-i)})
-  Uup<-sapply(1:nr,function(i){qbeta(0.975,i,nr+1-i)})
-
   lines(c(1:nr)/(nr+1),Ulow,lty=2)
   lines(c(1:nr)/(nr+1),Uup,lty=2)
+  } else if(type=="horizontal"){
+    plot(c(1:nr)/(nr+1) -
+         sort(1-num/den),ylab="empirical - model",pch=20,cex=0.8,ylim=c(min(c(c(1:nr)/(nr+1)-sort(1-num/den), c(1:nr)/(nr+1)-Uup)),max(c(c(1:nr)/(nr+1)-sort(1-num/den), c(1:nr)/(nr+1)-Ulow))))
+    abline(a=0,b=0)
+    lines(c(1:nr)/(nr+1)-Ulow,lty=2)
+    lines(c(1:nr)/(nr+1)-Uup,lty=2)
+  }
 }
 
 
