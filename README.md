@@ -1,5 +1,5 @@
 # geometricMVE
-## R package for fitting parametric and piecewise-linear models for the gauge function of a multivariate sample in exponential margins
+## R package for fitting parametric and piecewise-linear models for limit set based multivariate extremal inference in exponential margins
 
 ## References
 - Wadsworth, J. L. and Campbell, R. (2024) Statistical inference for multivariate extremes via a geometric approach JRSSB, 86 (5), 1243-1265
@@ -36,25 +36,17 @@ qr<-fit.thresh(r=r,w=w, method = "KDE")
 # Visualization
 plotfittedthresh(qr)
 
-# Fitting truncated gamma model, using R exceedances defined through rolling-windows quantiles
-
-excind<-r>qr$r0w
-rexc<-r[excind]
-wexc<-w[excind,]
-
-# Threshold value corresponding to each w:
-
-r0w<-qr$r0w[excind]
+# Fitting truncated gamma model, using R exceedances defined through output of fit.thresh
 
 # Fit using different basic parametric gauge functions
 
-fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="log") # logistic-type gauge
-fit2<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="gauss") # gaussian-type gauge
-fit3<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="invlog") # Inverted logistic-type gauge
+fit1<-fit.geometric.par(thresh.fit=qr,model="log") # logistic-type gauge
+fit2<-fit.geometric.par(thresh.fit=qr,model="gauss") # gaussian-type gauge
+fit3<-fit.geometric.par(thresh.fit=qr,model="invlog") # Inverted logistic-type gauge
 
 # Fit using additive mixtures (agnostic to extremal dependence class)
-fit4<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="expgauss") # Exponential-Gaussian mix
-fit5<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="expinvlog") # Exponential-Inverted logistic mix
+fit4<-fit.geometric.par(thresh.fit=qr,model="expgauss") # Exponential-Gaussian mix
+fit5<-fit.geometric.par(thresh.fit=qr,model="expinvlog") # Exponential-Inverted logistic mix
 
 # Plot fitted gauge functions / limit sets
 plotfittedgauge(fit1)
@@ -67,22 +59,22 @@ qqdiag(fit1)
 
 # Fit using piecewise-linear gauge function
 
-fitpwl1<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w) 
+fitpwl1<-fit.geometric.pwl(thresh.fit=qr) 
 plotfittedgauge(fitpwl1)
 
 # Fix shape
 
-fitpwl2<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,fixshape = T) 
+fitpwl2<-fit.geometric.pwl(thresh.fit=qr,fixshape = T) 
 plotfittedgauge(fitpwl2)
 
 # Bound fit
 
-fitpwl3<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,bound.fit = T) 
+fitpwl3<-fit.geometric.pwl(thresh.fit=qr,bound.fit = T) 
 plotfittedgauge(fitpwl3)
 
 # Change reference locations
 
-fitpwl4<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w, locs=seq(0,1,len=5)) 
+fitpwl4<-fit.geometric.pwl(thresh.fit=qr, locs=seq(0,1,len=5)) 
 plotfittedgauge(fitpwl4)
 
 
@@ -141,21 +133,11 @@ qr<-fit.thresh(r=r,w=w, method = "KDE")
 # Visualization
 plotfittedthresh(qr)
 
-# Fitting truncated gamma model, using R exceedances defined through rolling-windows quantiles
+# Fitting truncated gamma model, using different basic parametric gauge functions
 
-excind<-r>qr$r0w
-rexc<-r[excind]
-wexc<-w[excind,]
-
-# Threshold value corresponding to each w:
-
-r0w<-qr$r0w[excind]
-
-# Fit using different basic parametric gauge functions
-
-fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="log") # logistic-type gauge
-fit2<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="gauss") # gaussian-type gauge
-fit3<-fit.geometric.par(r=rexc,w=wexc,r0w=r0w,model="invlog") # Inverted logistic-type gauge
+fit1<-fit.geometric.par(thresh.fit=qr,model="log") # logistic-type gauge
+fit2<-fit.geometric.par(thresh.fit=qr,model="gauss") # gaussian-type gauge
+fit3<-fit.geometric.par(thresh.fit=qr,model="invlog") # Inverted logistic-type gauge
 
 # Plot fitted gauge functions / limit sets
 plotfittedgauge(fit2)
@@ -178,7 +160,7 @@ par.locs = par.locs[apply(par.locs,1,function(w) !any(w<0)),]
 par.locs[,3] = ifelse(par.locs[,3]<0.001,0,par.locs[,3])
 
 
-fitpwl1<-fit.geometric.pwl(r=rexc,w=wexc,r0w=r0w,locs=par.locs) 
+fitpwl1<-fit.geometric.pwl(thresh.fit=qr,locs=par.locs) 
 
 # Plot fitted gauge function
 plotfittedgauge(fitpwl1)
