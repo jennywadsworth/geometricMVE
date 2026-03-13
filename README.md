@@ -5,7 +5,7 @@
 - Wadsworth, J. L. and Campbell, R. (2024) Statistical inference for multivariate extremes via a geometric approach JRSSB, 86 (5), 1243-1265 https://academic.oup.com/jrsssb/article/86/5/1243/7637082
 - Campbell, R. and Wadsworth, J. L. (2024) Piecewise-linear modeling of multivariate geometric extremes. https://arxiv.org/abs/2412.05195
 - Lee, J. and Wadsworth, J. L. (2025) Geometric criteria for identifying extremal dependence and flexible modeling via additive mixtures. https://arxiv.org/abs/2512.24392
-
+ 
 ## Example code
 ### Installation
 ```r
