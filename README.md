@@ -55,7 +55,8 @@ plotfittedgauge(fit4)
 
 # Diagnostics
 ppdiag(fit1)
-qqdiag(fit1)
+ppdiag(fit1, type="horizontal") # clearer scale
+qqdiag(fit1) # PP plot trasnformed on to standard exponential margins
 
 # Fit using piecewise-linear gauge function
 
