@@ -107,6 +107,18 @@ prob<-cond.prob1*cond.prob2*mean(excind)
 prob
 
 ```
+#### Note on providing threshold exceedances directly
+For simplicity, fit.geometric.par and fit.geometric.pwl take the output of fit.thresh and calculate threshold exceedances from that. It is also possible to supply threshold exceedances and values directly, which will be needed if they are not calculated via fit.thresh. Example syntac for this (using fit.thresh for the threshold calculation):
+
+```
+excind<-r>qr$r0w
+rexc<-r[excind]
+wexc<-w[excind,]
+r0wexc<-qr$r0w[excind]
+
+fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0wexc,model="log") # Same as fit1 above
+```
+
 ### 3d Example
 
 ```
