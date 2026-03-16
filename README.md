@@ -108,7 +108,7 @@ prob
 
 ```
 #### Note on providing threshold exceedances directly
-For simplicity, fit.geometric.par and fit.geometric.pwl take the output of fit.thresh and calculate threshold exceedances from that. It is also possible to supply threshold exceedances and values directly, which will be needed if they are not calculated via fit.thresh. Example syntax for this (in this case using fit.thresh for the threshold calculation):
+For simplicity, `fit.geometric.par` and `fit.geometric.pwl` take the output of fit.thresh and calculate threshold exceedances from that. It is also possible to supply threshold exceedances and values directly, which will be needed if they are not calculated via `fit.thresh`. Example syntax for this (in this case using `fit.thresh` for the threshold calculation):
 
 ```
 excind<-r>qr$r0w
