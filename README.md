@@ -125,7 +125,7 @@ fit1<-fit.geometric.par(r=rexc,w=wexc,r0w=r0wexc,model="log") # Same as fit1 abo
 library(mvtnorm)
 library(rgl) # for plots
 
-set.seed(1)
+set.seed(2)
 n<-2500
 sig<-matrix(c(1,0.8,0.5,0.8,1,0.6,0.5,0.6,1),nrow=3,byrow=T)
 x<-qexp(pnorm(rmvnorm(n,sigma=sig)))
@@ -160,6 +160,7 @@ points3d(x/log(n))
 
 # Diagnostics
 ppdiag(fit2)
+ppdiag(fit2, type="horizontal")
 qqdiag(fit2)
 
 # Fit using piecewise-linear gauge function
