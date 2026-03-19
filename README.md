@@ -98,12 +98,12 @@ points(newx2,col=3,pch=20)
 # Estimate probability 8<X<12, 4<Y<6
 
 cond.prob<-mean(newx[,1]>8 & newx[,1]<12 & newx[,2]>4 & newx[,2]<6)
-prob<-cond.prob*mean(excind)
+prob<-cond.prob*mean(r>qr$r0w) # This line undoes the conditioning; mean(r>qr$r0w) is the empirical exceedance probability
 prob
 
 cond.prob1<-mean(newx2[,1]>8 & newx2[,1]<12 & newx2[,2]>4 & newx2[,2]<6)
 cond.prob2<-Rexc.prob.k(k=2, fit=fit1) # Undoes extra conditioning of being above a higher threshold
-prob<-cond.prob1*cond.prob2*mean(excind)
+prob<-cond.prob1*cond.prob2*mean(r>qr$r0w)
 prob
 
 ```
